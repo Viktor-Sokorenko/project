@@ -1,17 +1,14 @@
-// Product.js
 class Product {
   calculatePrice() {
-    return this.basePrice - this.getDiscount();
+    const priceWithDiscount = this.basePrice - this.getDiscount();
+    return priceWithDiscount + this.getTax(priceWithDiscount);
   }
   
   getDiscount() {
     return this.basePrice * this.discountRate;
   }
+  
+  getTax(priceAfterDiscount) {
+    return priceAfterDiscount * this.taxRate;
+  }
 }
-
-// pricing.js
-export const calculateTotal = (items) => {
-  return items.reduce((sum, item) => {
-    return sum + item.calculatePrice();
-  }, 0);
-};
